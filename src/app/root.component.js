@@ -4,4 +4,6 @@ var root = {
 
 angular
   .module('root')
-  .component('root', root);
+  .component('root', root).config(['$locationProvider', function($locationProvider) {
+    $locationProvider.hashPrefix('');
+  }]);
