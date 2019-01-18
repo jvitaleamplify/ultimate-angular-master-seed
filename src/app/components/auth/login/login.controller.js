@@ -1,4 +1,4 @@
-function LoginController(AuthService){
+function LoginController(AuthService, $state){
     var ctrl = this;
     ctrl.$onInit = function(){
         ctrl.error = null;
@@ -8,12 +8,10 @@ function LoginController(AuthService){
         };
     };
     ctrl.loginUser = function(event){
-        console.log(event.user);
         return AuthService
         .login(event.user)
         .then(function(user){
-            console.log('SUCCESS');
-            // $state redirect
+            $state.go('app');
         }, function(reason){
             ctrl.error = reason.message;
         });

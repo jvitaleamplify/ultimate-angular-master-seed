@@ -1,4 +1,4 @@
-function RegisterController(AuthService){
+function RegisterController(AuthService, $state){
     var ctrl = this;
     ctrl.$onInit = function(){
         ctrl.error = null;
@@ -8,11 +8,10 @@ function RegisterController(AuthService){
         };
     };
     ctrl.createUser = function(event){
-        console.log(event.user);
         return AuthService
         .register(event.user)
         .then(function(user){
-            console.log('SUCCESS');
+            $state.go('app');
         }, function(reason){
             ctrl.error = reason.message;
         });
