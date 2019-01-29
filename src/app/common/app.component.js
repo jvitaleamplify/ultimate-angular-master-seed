@@ -9,9 +9,14 @@ angular
 .component('app', app)
 .config(function ($stateProvider) {
     $stateProvider.state('app', {
-        // redirectTo: 'contacts'
+        redirectTo: 'contacts',
         url: '/app',
         data: {requiredAuth: true},
-        component: 'app'
+        component: 'app',
+        resolve: {
+            contacts: function(ContactService){
+                return ContactService.getContactList().$loaded();
+            }
+        }
     });
 });
